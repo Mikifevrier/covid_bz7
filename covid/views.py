@@ -1,3 +1,4 @@
+from flask import render_template, request
 from covid import app
 import csv
 import json
@@ -66,3 +67,10 @@ def casos(year, mes, dia): #aquí podemos poner dia=None y quitar el defaults de
     
     fichero.close()
     return json.dumps(res)
+
+@app.route("/incidenciasdiarias", methods = ["GET", "POST"])
+def incidencia():
+    if request.method == "GET":
+        return render_template("alta.html")
+
+    return "Se ha hecho un post"
