@@ -73,4 +73,22 @@ def incidencia():
     if request.method == "GET":
         return render_template("alta.html")
 
+    # Validar la información que llega
+    #valorar num_casos_prueba_pcr >= 0 y entero
+    try:
+        num_pcr = int(request.form["num_casos_prueba_pcr"])
+        if num_pcr < 0:
+            raise ValueError("Debe ser positivo")
+    
+    except ValueError:
+        return render_template("alta.html", casos_pcr="Introduce un valor correcto")
+
+    #Que los valores de los casos sean números y sean positivos
+    #Que el total de casos sea la suma del resto de casos
+    #Que la provincia sea correcta
+    #Que la fecha sea correcta en formato y valor
+    #QUe la fecha no sea futuro y la fecha no sea anterior a fecha covid
+
+    #Si la información es incorrecta mandar un aviso
+
     return "Se ha hecho un post"
